@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_chat_app/utils/show_snackbar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'count.g.dart';
 
@@ -14,7 +15,7 @@ class CountNotifier extends _$CountNotifier {
     if (state < 100) {
       state++;
     } else {
-      _showSnackbar(context, 'Value cannot be greater than 100');
+      showSnackbar(context, 'Value cannot be greater than 100');
     }
   }
 
@@ -22,15 +23,7 @@ class CountNotifier extends _$CountNotifier {
     if (state > 0) {
       state--;
     } else {
-      _showSnackbar(context, 'Value cannot be less than 0');
+      showSnackbar(context, 'Value cannot be less than 0');
     }
-  }
-
-  void _showSnackbar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
   }
 }

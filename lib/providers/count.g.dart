@@ -6,7 +6,7 @@ part of 'count.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$countNotifierHash() => r'f31f3b814933341b11cea227996dc5bd66a14265';
+String _$countNotifierHash() => r'696cacbf34747f2a13b6e004dcdd6bdd4aabc8a4';
 
 /// 実験用
 ///
