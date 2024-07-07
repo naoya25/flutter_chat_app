@@ -1,6 +1,6 @@
 ---
 name: 機能実装
-about: ''
+about: 機能の実装依頼
 title: ''
 labels: 'feature'
 assignees: ''
