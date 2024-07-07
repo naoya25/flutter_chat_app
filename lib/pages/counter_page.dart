@@ -8,7 +8,7 @@ class CounterPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final s1 = ref.watch(s1NotifierProvider);
+    final s1 = ref.watch(countNotifierProvider);
     return Scaffold(
         appBar: AppBar(
           title: const Text('カウンター'),
@@ -24,14 +24,14 @@ class CounterPage extends ConsumerWidget {
           children: [
             IconButton(
               onPressed: () {
-                final s1Notifier = ref.read(s1NotifierProvider.notifier);
+                final s1Notifier = ref.read(countNotifierProvider.notifier);
                 s1Notifier.inc(context);
               },
               icon: const Icon(Icons.add),
             ),
             IconButton(
               onPressed: () {
-                final s1Notifier = ref.read(s1NotifierProvider.notifier);
+                final s1Notifier = ref.read(countNotifierProvider.notifier);
                 s1Notifier.dec(context);
               },
               icon: const Icon(Icons.remove),

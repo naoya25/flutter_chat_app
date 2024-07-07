@@ -4,7 +4,7 @@ part 'count.g.dart';
 
 /// 実験用
 @riverpod
-class S1Notifier extends _$S1Notifier {
+class CountNotifier extends _$CountNotifier {
   @override
   int build() {
     return 0;
