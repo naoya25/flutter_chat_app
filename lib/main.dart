@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_chat_app/firebase_options.dart';
-import 'package:my_chat_app/router.dart';
+import 'package:my_chat_app/navigation/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
