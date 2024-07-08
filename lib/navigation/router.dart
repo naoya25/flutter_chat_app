@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_chat_app/pages/chat/room_list.dart';
+import 'package:my_chat_app/pages/add_room_page.dart';
 import 'package:my_chat_app/pages/counter_page.dart';
 import 'package:my_chat_app/pages/home_page.dart';
 import 'package:my_chat_app/pages/login_page.dart';
 import 'package:my_chat_app/providers/user.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'router.g.dart';
-
 
 @riverpod
 GoRouter router(RouterRef ref) {
@@ -22,16 +21,16 @@ GoRouter router(RouterRef ref) {
       builder: (_, __, child) => UserIdScope(child: child),
       routes: [
         GoRoute(
-          path: '/home',
-          builder: (_, __) => const HomePage(),
-        ),
-        GoRoute(
           path: '/counter',
           builder: (_, __) => const CounterPage(),
         ),
         GoRoute(
-          path: '/rooms',
-          builder: (_, __) => const RoomListPage(),
+          path: '/home',
+          builder: (_, __) => const HomePage(),
+        ),
+        GoRoute(
+          path: '/add_room',
+          builder: (_, __) => const AddRoomPage(),
         ),
       ],
     ),

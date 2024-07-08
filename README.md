@@ -1,6 +1,6 @@
 # my_chat_app
 riverpod_generatorとfreezedを使いたかっただけ
 
-チャットアプリ
+1分チャット
 
 iosのみ
