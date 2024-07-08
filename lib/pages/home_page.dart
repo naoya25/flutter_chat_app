@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_chat_app/providers/all_users.dart';
 import 'package:my_chat_app/providers/user.dart';
 import 'package:my_chat_app/repositories/auth_service.dart';
@@ -45,6 +46,12 @@ class HomePage extends ConsumerWidget {
         child: Column(
           children: [
             Text('ログイン中: $email'),
+            TextButton(
+              onPressed: () {
+                context.push('/rooms');
+              },
+              child: const Text('chat room'),
+            ),
             Expanded(
               child: users.when(
                 data: (data) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_chat_app/pages/chat/room_list.dart';
 import 'package:my_chat_app/pages/counter_page.dart';
 import 'package:my_chat_app/pages/home_page.dart';
 import 'package:my_chat_app/pages/login_page.dart';
@@ -27,6 +28,10 @@ GoRouter router(RouterRef ref) {
         GoRoute(
           path: '/counter',
           builder: (_, __) => const CounterPage(),
+        ),
+        GoRoute(
+          path: '/rooms',
+          builder: (_, __) => const RoomListPage(),
         ),
       ],
     ),
