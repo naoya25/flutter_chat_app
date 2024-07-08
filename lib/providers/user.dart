@@ -16,9 +16,9 @@ Stream<User?> userChanges(UserChangesRef ref) {
 User? user(UserRef ref) {
   final userChanges = ref.watch(userChangesProvider);
   return userChanges.when(
+    data: (d) => d,
     loading: () => null,
     error: (_, __) => null,
-    data: (d) => d,
   );
 }
 
