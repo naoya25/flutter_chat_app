@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
-  Future<void> signInWithGoogle() async {
+  Future<User?> signInWithGoogle() async {
     // google cloud
     const clientId =
         '476057614092-l89jkubtqtio201meikscthmgitilp3c.apps.googleusercontent.com';
@@ -16,14 +16,16 @@ class AuthService {
     final accessToken = authn?.accessToken;
     final idToken = authn?.idToken;
 
-    if (accessToken == null) return;
+    if (accessToken == null) return null;
 
     // firebase
     final credential = GoogleAuthProvider.credential(
       accessToken: accessToken,
       idToken: idToken,
     );
-    await FirebaseAuth.instance.signInWithCredential(credential);
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+    return userCredential.user;
   }
 
   Future<void> signOut() async {
