@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_chat_app/models/room_model.dart';
 import 'package:my_chat_app/providers/chats.dart';
 import 'package:my_chat_app/providers/user.dart';
 import 'package:my_chat_app/utils/error.dart';
@@ -8,13 +9,13 @@ import 'package:my_chat_app/utils/loading.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 
 class ChatPage extends ConsumerWidget {
-  const ChatPage(this.roomName, {super.key});
-  final String roomName;
+  const ChatPage(this.room, {super.key});
+  final RoomModel room;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final chats = ref.watch(chatsNotifierProvider(roomName));
-    final chatsNotifier = ref.watch(chatsNotifierProvider(roomName).notifier);
+    final chats = ref.watch(chatsNotifierProvider(room.id));
+    final chatsNotifier = ref.watch(chatsNotifierProvider(room.id).notifier);
     final currentUser = ref.watch(userProvider);
     if (currentUser == null) {
       return const Center(
@@ -28,7 +29,7 @@ class ChatPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(roomName),
+        title: Text(room.name),
       ),
       body: Center(
           child: chats.when(
@@ -36,7 +37,7 @@ class ChatPage extends ConsumerWidget {
           return Chat(
             messages: data,
             onSendPressed: (types.PartialText message) {
-              chatsNotifier.postMessage(message, roomName, user);
+              chatsNotifier.postMessage(message, room.id, user);
             },
             user: user,
             showUserNames: true,

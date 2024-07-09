@@ -6,7 +6,7 @@ part of 'chats.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$chatsNotifierHash() => r'be67b725a2facdd275b4b8001b57bfaf5e1dfbfa';
+String _$chatsNotifierHash() => r'2da7294798e56ca11d3d9712082b08f6e52d3868';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,10 +31,10 @@ class _SystemHash {
 
 abstract class _$ChatsNotifier
     extends BuildlessAutoDisposeStreamNotifier<List<types.Message>> {
-  late final String roomName;
+  late final String roomId;
 
   Stream<List<types.Message>> build(
-    String roomName,
+    String roomId,
   );
 }
 
@@ -49,10 +49,10 @@ class ChatsNotifierFamily extends Family<AsyncValue<List<types.Message>>> {
 
   /// See also [ChatsNotifier].
   ChatsNotifierProvider call(
-    String roomName,
+    String roomId,
   ) {
     return ChatsNotifierProvider(
-      roomName,
+      roomId,
     );
   }
 
@@ -61,7 +61,7 @@ class ChatsNotifierFamily extends Family<AsyncValue<List<types.Message>>> {
     covariant ChatsNotifierProvider provider,
   ) {
     return call(
-      provider.roomName,
+      provider.roomId,
     );
   }
 
@@ -85,9 +85,9 @@ class ChatsNotifierProvider extends AutoDisposeStreamNotifierProviderImpl<
     ChatsNotifier, List<types.Message>> {
   /// See also [ChatsNotifier].
   ChatsNotifierProvider(
-    String roomName,
+    String roomId,
   ) : this._internal(
-          () => ChatsNotifier()..roomName = roomName,
+          () => ChatsNotifier()..roomId = roomId,
           from: chatsNotifierProvider,
           name: r'chatsNotifierProvider',
           debugGetCreateSourceHash:
@@ -97,7 +97,7 @@ class ChatsNotifierProvider extends AutoDisposeStreamNotifierProviderImpl<
           dependencies: ChatsNotifierFamily._dependencies,
           allTransitiveDependencies:
               ChatsNotifierFamily._allTransitiveDependencies,
-          roomName: roomName,
+          roomId: roomId,
         );
 
   ChatsNotifierProvider._internal(
@@ -107,17 +107,17 @@ class ChatsNotifierProvider extends AutoDisposeStreamNotifierProviderImpl<
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.roomName,
+    required this.roomId,
   }) : super.internal();
 
-  final String roomName;
+  final String roomId;
 
   @override
   Stream<List<types.Message>> runNotifierBuild(
     covariant ChatsNotifier notifier,
   ) {
     return notifier.build(
-      roomName,
+      roomId,
     );
   }
 
@@ -126,13 +126,13 @@ class ChatsNotifierProvider extends AutoDisposeStreamNotifierProviderImpl<
     return ProviderOverride(
       origin: this,
       override: ChatsNotifierProvider._internal(
-        () => create()..roomName = roomName,
+        () => create()..roomId = roomId,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        roomName: roomName,
+        roomId: roomId,
       ),
     );
   }
@@ -145,13 +145,13 @@ class ChatsNotifierProvider extends AutoDisposeStreamNotifierProviderImpl<
 
   @override
   bool operator ==(Object other) {
-    return other is ChatsNotifierProvider && other.roomName == roomName;
+    return other is ChatsNotifierProvider && other.roomId == roomId;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, roomName.hashCode);
+    hash = _SystemHash.combine(hash, roomId.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -159,8 +159,8 @@ class ChatsNotifierProvider extends AutoDisposeStreamNotifierProviderImpl<
 
 mixin ChatsNotifierRef
     on AutoDisposeStreamNotifierProviderRef<List<types.Message>> {
-  /// The parameter `roomName` of this provider.
-  String get roomName;
+  /// The parameter `roomId` of this provider.
+  String get roomId;
 }
 
 class _ChatsNotifierProviderElement
@@ -169,7 +169,7 @@ class _ChatsNotifierProviderElement
   _ChatsNotifierProviderElement(super.provider);
 
   @override
-  String get roomName => (origin as ChatsNotifierProvider).roomName;
+  String get roomId => (origin as ChatsNotifierProvider).roomId;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

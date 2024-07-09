@@ -12,10 +12,10 @@ class ChatsNotifier extends _$ChatsNotifier {
   final FirebaseFirestore db = FirebaseFirestore.instance;
 
   @override
-  Stream<List<types.Message>> build(String roomName) {
+  Stream<List<types.Message>> build(String roomId) {
     final chatsStream = db
         .collection('chat_room')
-        .doc(roomName)
+        .doc(roomId)
         .collection('contents')
         .orderBy('created_at', descending: true)
         .snapshots()
@@ -37,7 +37,7 @@ class ChatsNotifier extends _$ChatsNotifier {
 
   void postMessage(
     types.PartialText message,
-    String roomName,
+    String roomId,
     types.User user,
   ) {
     final textMessage = types.TextMessage(
@@ -47,7 +47,7 @@ class ChatsNotifier extends _$ChatsNotifier {
       text: message.text,
     );
 
-    db.collection('chat_room').doc(roomName).collection('contents').add({
+    db.collection('chat_room').doc(roomId).collection('contents').add({
       'user_id': textMessage.author.id,
       'user_name': textMessage.author.firstName,
       'created_at': textMessage.createdAt,

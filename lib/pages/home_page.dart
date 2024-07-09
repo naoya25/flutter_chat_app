@@ -60,20 +60,19 @@ class HomePage extends ConsumerWidget {
                       itemCount: data.length,
                       itemBuilder: (context, index) {
                         final room = data[index];
-                        return Card(
-                          child: ListTile(
-                            title: Text(room),
-                            trailing: IconButton(
-                              icon: const Icon(Icons.input),
-                              onPressed: () async {
-                                await Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return ChatPage(room);
-                                    },
-                                  ),
-                                );
-                              },
+                        return GestureDetector(
+                          onTap: () async {
+                            await Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return ChatPage(room);
+                                },
+                              ),
+                            );
+                          },
+                          child: Card(
+                            child: ListTile(
+                              title: Text(room.name),
                             ),
                           ),
                         );
