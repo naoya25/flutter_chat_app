@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +6,7 @@ import 'package:my_chat_app/pages/chat_page.dart';
 import 'package:my_chat_app/providers/all_users.dart';
 import 'package:my_chat_app/providers/chat_rooms.dart';
 import 'package:my_chat_app/providers/user.dart';
+import 'package:my_chat_app/utils/constants.dart';
 import 'package:my_chat_app/utils/error.dart';
 import 'package:my_chat_app/utils/loading.dart';
 
@@ -32,6 +32,18 @@ class HomePage extends ConsumerWidget {
         child: Column(
           children: [
             Text('ログイン中: ${currentUser.email}'),
+            const Text(
+              '''
+このチャットアプリは
+日々の人間関係に疲労している
+現代の闇を解決すべく開発されたアプリです
+なのでチャットは、
+基本的に全て${ConstantValue.deleteMinutes}分後に削除されます
+ちょっとした連絡なんて
+全て忘れちゃえばいいんですヨネ〜〜
+''',
+              textAlign: TextAlign.center,
+            ),
             Expanded(
               child: rooms.when(
                 data: (data) {
@@ -45,10 +57,11 @@ class HomePage extends ConsumerWidget {
                       itemCount: data.length,
                       itemBuilder: (context, index) {
                         final room = data[index];
-                        final member = room.members.firstWhereOrNull(
-                          (member) => member.userId == currentUser.id,
-                        );
-                        if (member == null) return const SizedBox(height: 0);
+                        final title = room.members
+                            .firstWhere(
+                              (member) => member.userId == currentUser.id,
+                            )
+                            .title;
 
                         return GestureDetector(
                           onTap: () async {
@@ -62,7 +75,7 @@ class HomePage extends ConsumerWidget {
                           },
                           child: Card(
                             child: ListTile(
-                              title: Text(member.title),
+                              title: Text(title),
                             ),
                           ),
                         );
@@ -83,6 +96,26 @@ class HomePage extends ConsumerWidget {
           context.push('/add_room');
         },
       ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       icon: IconButton(
+      //         onPressed: () {
+      //           context.push('/home');
+      //         },
+      //         icon: const Icon(Icons.home),
+      //       ),
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: IconButton(
+      //         onPressed: () {
+      //           context.push('/home');
+      //         },
+      //         icon: const Icon(Icons.account_balance),
+      //       ),
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

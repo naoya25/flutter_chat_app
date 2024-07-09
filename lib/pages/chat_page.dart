@@ -17,6 +17,7 @@ class ChatPage extends ConsumerWidget {
     final chats = ref.watch(chatsNotifierProvider(room.id));
     final chatsNotifier = ref.watch(chatsNotifierProvider(room.id).notifier);
     final currentUser = ref.watch(userProvider);
+
     if (currentUser == null) {
       return const Center(
         child: Text('ユーザ情報を取得できませんでした'),
