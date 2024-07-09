@@ -19,6 +19,8 @@ class RoomMemberModel with _$RoomMemberModel {
   const factory RoomMemberModel({
     required String userId,
     required String title,
+    required bool isBlock, // trueの時ブロックしてる
+    required bool isPermit, // trueの時許可済み
   }) = _RoomMemberModel;
 
   factory RoomMemberModel.fromJson(Map<String, dynamic> json) =>

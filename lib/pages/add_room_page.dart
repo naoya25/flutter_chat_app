@@ -35,6 +35,10 @@ class AddRoomPage extends ConsumerWidget {
                     itemCount: data.length,
                     itemBuilder: (context, index) {
                       final user = data[index];
+                      if (user.id == currentUser.id) {
+                        return const SizedBox(height: 0);
+                      }
+
                       return GestureDetector(
                         onTap: () {
                           final notifier =
@@ -48,7 +52,7 @@ class AddRoomPage extends ConsumerWidget {
                         },
                         child: Card(
                           child: ListTile(
-                            title: Text(user.name),
+                            title: Text(user.email),
                           ),
                         ),
                       );

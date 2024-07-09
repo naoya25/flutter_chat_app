@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -45,10 +46,10 @@ class HomePage extends ConsumerWidget {
                       itemBuilder: (context, index) {
                         final room = data[index];
                         final title = room.members
-                            .firstWhere(
-                              (member) => member.userId == currentUser.id,
-                            )
-                            .title;
+                            .firstWhereOrNull(
+                                (member) => member.userId == currentUser.id)
+                            ?.title;
+                        if (title == null) return const SizedBox(height: 0);
                         return GestureDetector(
                           onTap: () async {
                             await Navigator.of(context).push(

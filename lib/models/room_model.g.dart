@@ -25,6 +25,8 @@ _$RoomMemberModelImpl _$$RoomMemberModelImplFromJson(
     _$RoomMemberModelImpl(
       userId: json['userId'] as String,
       title: json['title'] as String,
+      isBlock: json['isBlock'] as bool,
+      isPermit: json['isPermit'] as bool,
     );
 
 Map<String, dynamic> _$$RoomMemberModelImplToJson(
@@ -32,4 +34,6 @@ Map<String, dynamic> _$$RoomMemberModelImplToJson(
     <String, dynamic>{
       'userId': instance.userId,
       'title': instance.title,
+      'isBlock': instance.isBlock,
+      'isPermit': instance.isPermit,
     };

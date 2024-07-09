@@ -183,6 +183,8 @@ RoomMemberModel _$RoomMemberModelFromJson(Map<String, dynamic> json) {
 mixin _$RoomMemberModel {
   String get userId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  bool get isBlock => throw _privateConstructorUsedError; // trueの時ブロックしてる
+  bool get isPermit => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -196,7 +198,7 @@ abstract class $RoomMemberModelCopyWith<$Res> {
           RoomMemberModel value, $Res Function(RoomMemberModel) then) =
       _$RoomMemberModelCopyWithImpl<$Res, RoomMemberModel>;
   @useResult
-  $Res call({String userId, String title});
+  $Res call({String userId, String title, bool isBlock, bool isPermit});
 }
 
 /// @nodoc
@@ -214,6 +216,8 @@ class _$RoomMemberModelCopyWithImpl<$Res, $Val extends RoomMemberModel>
   $Res call({
     Object? userId = null,
     Object? title = null,
+    Object? isBlock = null,
+    Object? isPermit = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -224,6 +228,14 @@ class _$RoomMemberModelCopyWithImpl<$Res, $Val extends RoomMemberModel>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      isBlock: null == isBlock
+          ? _value.isBlock
+          : isBlock // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPermit: null == isPermit
+          ? _value.isPermit
+          : isPermit // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -236,7 +248,7 @@ abstract class _$$RoomMemberModelImplCopyWith<$Res>
       __$$RoomMemberModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId, String title});
+  $Res call({String userId, String title, bool isBlock, bool isPermit});
 }
 
 /// @nodoc
@@ -252,6 +264,8 @@ class __$$RoomMemberModelImplCopyWithImpl<$Res>
   $Res call({
     Object? userId = null,
     Object? title = null,
+    Object? isBlock = null,
+    Object? isPermit = null,
   }) {
     return _then(_$RoomMemberModelImpl(
       userId: null == userId
@@ -262,6 +276,14 @@ class __$$RoomMemberModelImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      isBlock: null == isBlock
+          ? _value.isBlock
+          : isBlock // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPermit: null == isPermit
+          ? _value.isPermit
+          : isPermit // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -269,7 +291,11 @@ class __$$RoomMemberModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RoomMemberModelImpl implements _RoomMemberModel {
-  const _$RoomMemberModelImpl({required this.userId, required this.title});
+  const _$RoomMemberModelImpl(
+      {required this.userId,
+      required this.title,
+      required this.isBlock,
+      required this.isPermit});
 
   factory _$RoomMemberModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RoomMemberModelImplFromJson(json);
@@ -278,10 +304,15 @@ class _$RoomMemberModelImpl implements _RoomMemberModel {
   final String userId;
   @override
   final String title;
+  @override
+  final bool isBlock;
+// trueの時ブロックしてる
+  @override
+  final bool isPermit;
 
   @override
   String toString() {
-    return 'RoomMemberModel(userId: $userId, title: $title)';
+    return 'RoomMemberModel(userId: $userId, title: $title, isBlock: $isBlock, isPermit: $isPermit)';
   }
 
   @override
@@ -290,12 +321,16 @@ class _$RoomMemberModelImpl implements _RoomMemberModel {
         (other.runtimeType == runtimeType &&
             other is _$RoomMemberModelImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.title, title) || other.title == title));
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.isBlock, isBlock) || other.isBlock == isBlock) &&
+            (identical(other.isPermit, isPermit) ||
+                other.isPermit == isPermit));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, title);
+  int get hashCode =>
+      Object.hash(runtimeType, userId, title, isBlock, isPermit);
 
   @JsonKey(ignore: true)
   @override
@@ -315,7 +350,9 @@ class _$RoomMemberModelImpl implements _RoomMemberModel {
 abstract class _RoomMemberModel implements RoomMemberModel {
   const factory _RoomMemberModel(
       {required final String userId,
-      required final String title}) = _$RoomMemberModelImpl;
+      required final String title,
+      required final bool isBlock,
+      required final bool isPermit}) = _$RoomMemberModelImpl;
 
   factory _RoomMemberModel.fromJson(Map<String, dynamic> json) =
       _$RoomMemberModelImpl.fromJson;
@@ -324,6 +361,10 @@ abstract class _RoomMemberModel implements RoomMemberModel {
   String get userId;
   @override
   String get title;
+  @override
+  bool get isBlock;
+  @override // trueの時ブロックしてる
+  bool get isPermit;
   @override
   @JsonKey(ignore: true)
   _$$RoomMemberModelImplCopyWith<_$RoomMemberModelImpl> get copyWith =>

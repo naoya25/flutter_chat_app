@@ -20,7 +20,7 @@ final userChangesProvider = AutoDisposeStreamProvider<User?>.internal(
 );
 
 typedef UserChangesRef = AutoDisposeStreamProviderRef<User?>;
-String _$userHash() => r'3e2a62c3fa3b21ccaef8e756d9ce2d827fab4431';
+String _$userHash() => r'1ceb195061554f35a04cb22164cba3b0bcf45619';
 
 /// See also [user].
 @ProviderFor(user)

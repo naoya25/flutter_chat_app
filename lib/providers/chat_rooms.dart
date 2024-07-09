@@ -25,6 +25,8 @@ class ChatRoomsNotifier extends _$ChatRoomsNotifier {
           return RoomMemberModel(
             userId: memberDoc.get('user_id'),
             title: memberDoc.get('title'),
+            isBlock: memberDoc.get('is_block'),
+            isPermit: memberDoc.get('is_permit'),
           );
         }).toList();
 
@@ -49,10 +51,14 @@ class ChatRoomsNotifier extends _$ChatRoomsNotifier {
     db.collection('chat_room').doc(ulid).collection('members').add({
       'user_id': creatorUser.id,
       'title': receiverUser.name,
+      'is_block': false,
+      'is_permit': true,
     });
     db.collection('chat_room').doc(ulid).collection('members').add({
       'user_id': receiverUser.id,
       'title': creatorUser.name,
+      'is_block': false,
+      'is_permit': false,
     });
   }
 }
