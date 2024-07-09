@@ -5,7 +5,6 @@ import 'package:my_chat_app/providers/chat_rooms.dart';
 import 'package:my_chat_app/providers/user.dart';
 import 'package:my_chat_app/utils/error.dart';
 import 'package:my_chat_app/utils/loading.dart';
-import 'package:my_chat_app/utils/show_snackbar.dart';
 
 class AddRoomPage extends ConsumerWidget {
   const AddRoomPage({super.key});
@@ -40,14 +39,15 @@ class AddRoomPage extends ConsumerWidget {
                       }
 
                       return GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           final notifier =
-                              ref.read(chatRoomsNotifierProvider.notifier);
-                          notifier.postChatRoom(
+                              ref.read(chatRoomsNotifierProvider(user.id).notifier);
+                          await notifier.postChatRoom(
                             currentUser,
                             user,
+                            context,
                           );
-                          showSnackbar(context, '正常に作成されました');
+                          if (!context.mounted) return;
                           Navigator.of(context).pop();
                         },
                         child: Card(

@@ -21,7 +21,7 @@ class HomePage extends ConsumerWidget {
         child: Text('ユーザが見つかりません'),
       );
     }
-    final rooms = ref.watch(chatRoomsNotifierProvider);
+    final rooms = ref.watch(chatRoomsNotifierProvider(currentUser.id));
 
     return Scaffold(
       appBar: AppBar(
@@ -45,11 +45,11 @@ class HomePage extends ConsumerWidget {
                       itemCount: data.length,
                       itemBuilder: (context, index) {
                         final room = data[index];
-                        final title = room.members
-                            .firstWhereOrNull(
-                                (member) => member.userId == currentUser.id)
-                            ?.title;
-                        if (title == null) return const SizedBox(height: 0);
+                        final member = room.members.firstWhereOrNull(
+                          (member) => member.userId == currentUser.id,
+                        );
+                        if (member == null) return const SizedBox(height: 0);
+
                         return GestureDetector(
                           onTap: () async {
                             await Navigator.of(context).push(
@@ -62,7 +62,7 @@ class HomePage extends ConsumerWidget {
                           },
                           child: Card(
                             child: ListTile(
-                              title: Text(title),
+                              title: Text(member.title),
                             ),
                           ),
                         );
