@@ -23,13 +23,18 @@ class ChatPage extends ConsumerWidget {
       );
     }
     final user = types.User(
-      id: currentUser.uid,
-      firstName: currentUser.displayName,
+      id: currentUser.id,
+      firstName: currentUser.name,
     );
+    final title = room.members
+        .firstWhere(
+          (member) => member.userId == currentUser.id,
+        )
+        .title;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(room.name),
+        title: Text(title),
       ),
       body: Center(
           child: chats.when(

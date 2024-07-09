@@ -9,11 +9,27 @@ part of 'room_model.dart';
 _$RoomModelImpl _$$RoomModelImplFromJson(Map<String, dynamic> json) =>
     _$RoomModelImpl(
       id: json['id'] as String,
-      name: json['name'] as String,
+      members: (json['members'] as List<dynamic>)
+          .map((e) => RoomMemberModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$RoomModelImplToJson(_$RoomModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'members': instance.members,
+    };
+
+_$RoomMemberModelImpl _$$RoomMemberModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RoomMemberModelImpl(
+      userId: json['userId'] as String,
+      title: json['title'] as String,
+    );
+
+Map<String, dynamic> _$$RoomMemberModelImplToJson(
+        _$RoomMemberModelImpl instance) =>
+    <String, dynamic>{
+      'userId': instance.userId,
+      'title': instance.title,
     };

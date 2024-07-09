@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:my_chat_app/models/db_user.dart';
 import 'package:my_chat_app/models/room_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:ulid/ulid.dart';
@@ -15,23 +16,43 @@ class ChatRoomsNotifier extends _$ChatRoomsNotifier {
         .collection('chat_room')
         .orderBy('created_at')
         .snapshots()
-        .map((snapshot) {
-      return snapshot.docs.map((doc) {
+        .asyncMap((snapshot) async {
+      final roomFutures = snapshot.docs.map((doc) async {
+        DocumentReference docRef = doc.reference;
+        QuerySnapshot membersSnapshot =
+            await docRef.collection('members').get();
+        List<RoomMemberModel> members = membersSnapshot.docs.map((memberDoc) {
+          return RoomMemberModel(
+            userId: memberDoc.get('user_id'),
+            title: memberDoc.get('title'),
+          );
+        }).toList();
+
         return RoomModel(
           id: doc.get('id'),
-          name: doc.get('name'),
+          members: members,
         );
       }).toList();
+
+      return Future.wait(roomFutures);
     });
     return chatRoomsStream;
   }
 
-  Future<void> postChatRoom(String roomName) async {
+  void postChatRoom(DBUser creatorUser, DBUser receiverUser) {
     String ulid = Ulid().toString();
-    await db.collection('chat_room').doc(ulid).set({
+    db.collection('chat_room').doc(ulid).set({
       'id': ulid,
-      'name': roomName,
       'created_at': DateTime.now().toLocal().toIso8601String(),
+    });
+
+    db.collection('chat_room').doc(ulid).collection('members').add({
+      'user_id': creatorUser.id,
+      'title': receiverUser.name,
+    });
+    db.collection('chat_room').doc(ulid).collection('members').add({
+      'user_id': receiverUser.id,
+      'title': creatorUser.name,
     });
   }
 }

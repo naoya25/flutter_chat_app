@@ -20,11 +20,11 @@ final userChangesProvider = AutoDisposeStreamProvider<User?>.internal(
 );
 
 typedef UserChangesRef = AutoDisposeStreamProviderRef<User?>;
-String _$userHash() => r'ca02a11da9e82bb961098355a01a511406569c76';
+String _$userHash() => r'3e2a62c3fa3b21ccaef8e756d9ce2d827fab4431';
 
 /// See also [user].
 @ProviderFor(user)
-final userProvider = AutoDisposeProvider<User?>.internal(
+final userProvider = AutoDisposeProvider<DBUser?>.internal(
   user,
   name: r'userProvider',
   debugGetCreateSourceHash:
@@ -33,7 +33,7 @@ final userProvider = AutoDisposeProvider<User?>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef UserRef = AutoDisposeProviderRef<User?>;
+typedef UserRef = AutoDisposeProviderRef<DBUser?>;
 String _$signedInHash() => r'ad977544c865550a5f87cfb21ad0a59169bcdd7b';
 
 /// See also [signedIn].

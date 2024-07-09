@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_chat_app/models/db_user.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 part 'user.g.dart';
@@ -13,10 +14,16 @@ Stream<User?> userChanges(UserChangesRef ref) {
 
 // ユーザーstate
 @riverpod
-User? user(UserRef ref) {
+DBUser? user(UserRef ref) {
   final userChanges = ref.watch(userChangesProvider);
   return userChanges.when(
-    data: (d) => d,
+    data: (d) {
+      if (d == null || d.displayName == null || d.email == null) {
+        return null;
+      } else {
+        return DBUser(id: d.uid, name: d.displayName!, email: d.email!);
+      }
+    },
     loading: () => null,
     error: (_, __) => null,
   );
@@ -28,7 +35,6 @@ bool signedIn(SignedInRef ref) {
   final user = ref.watch(userProvider);
   return user != null;
 }
-
 
 // ユーザーID
 @riverpod
@@ -55,7 +61,7 @@ class UserIdScope extends ConsumerWidget {
     } else {
       return ProviderScope(
         overrides: [
-          userIdProvider.overrideWithValue(user.uid),
+          userIdProvider.overrideWithValue(user.id),
         ],
         child: child,
       );

@@ -21,7 +21,7 @@ RoomModel _$RoomModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RoomModel {
   String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  List<RoomMemberModel> get members => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $RoomModelCopyWith<$Res> {
   factory $RoomModelCopyWith(RoomModel value, $Res Function(RoomModel) then) =
       _$RoomModelCopyWithImpl<$Res, RoomModel>;
   @useResult
-  $Res call({String id, String name});
+  $Res call({String id, List<RoomMemberModel> members});
 }
 
 /// @nodoc
@@ -51,17 +51,17 @@ class _$RoomModelCopyWithImpl<$Res, $Val extends RoomModel>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
+    Object? members = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      members: null == members
+          ? _value.members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<RoomMemberModel>,
     ) as $Val);
   }
 }
@@ -74,7 +74,7 @@ abstract class _$$RoomModelImplCopyWith<$Res>
       __$$RoomModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name});
+  $Res call({String id, List<RoomMemberModel> members});
 }
 
 /// @nodoc
@@ -89,17 +89,17 @@ class __$$RoomModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
+    Object? members = null,
   }) {
     return _then(_$RoomModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      members: null == members
+          ? _value._members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<RoomMemberModel>,
     ));
   }
 }
@@ -107,19 +107,26 @@ class __$$RoomModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RoomModelImpl implements _RoomModel {
-  const _$RoomModelImpl({required this.id, required this.name});
+  const _$RoomModelImpl(
+      {required this.id, required final List<RoomMemberModel> members})
+      : _members = members;
 
   factory _$RoomModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RoomModelImplFromJson(json);
 
   @override
   final String id;
+  final List<RoomMemberModel> _members;
   @override
-  final String name;
+  List<RoomMemberModel> get members {
+    if (_members is EqualUnmodifiableListView) return _members;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_members);
+  }
 
   @override
   String toString() {
-    return 'RoomModel(id: $id, name: $name)';
+    return 'RoomModel(id: $id, members: $members)';
   }
 
   @override
@@ -128,12 +135,13 @@ class _$RoomModelImpl implements _RoomModel {
         (other.runtimeType == runtimeType &&
             other is _$RoomModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            const DeepCollectionEquality().equals(other._members, _members));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(
+      runtimeType, id, const DeepCollectionEquality().hash(_members));
 
   @JsonKey(ignore: true)
   @override
@@ -151,7 +159,8 @@ class _$RoomModelImpl implements _RoomModel {
 
 abstract class _RoomModel implements RoomModel {
   const factory _RoomModel(
-      {required final String id, required final String name}) = _$RoomModelImpl;
+      {required final String id,
+      required final List<RoomMemberModel> members}) = _$RoomModelImpl;
 
   factory _RoomModel.fromJson(Map<String, dynamic> json) =
       _$RoomModelImpl.fromJson;
@@ -159,9 +168,164 @@ abstract class _RoomModel implements RoomModel {
   @override
   String get id;
   @override
-  String get name;
+  List<RoomMemberModel> get members;
   @override
   @JsonKey(ignore: true)
   _$$RoomModelImplCopyWith<_$RoomModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+RoomMemberModel _$RoomMemberModelFromJson(Map<String, dynamic> json) {
+  return _RoomMemberModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RoomMemberModel {
+  String get userId => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RoomMemberModelCopyWith<RoomMemberModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RoomMemberModelCopyWith<$Res> {
+  factory $RoomMemberModelCopyWith(
+          RoomMemberModel value, $Res Function(RoomMemberModel) then) =
+      _$RoomMemberModelCopyWithImpl<$Res, RoomMemberModel>;
+  @useResult
+  $Res call({String userId, String title});
+}
+
+/// @nodoc
+class _$RoomMemberModelCopyWithImpl<$Res, $Val extends RoomMemberModel>
+    implements $RoomMemberModelCopyWith<$Res> {
+  _$RoomMemberModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+    Object? title = null,
+  }) {
+    return _then(_value.copyWith(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RoomMemberModelImplCopyWith<$Res>
+    implements $RoomMemberModelCopyWith<$Res> {
+  factory _$$RoomMemberModelImplCopyWith(_$RoomMemberModelImpl value,
+          $Res Function(_$RoomMemberModelImpl) then) =
+      __$$RoomMemberModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String userId, String title});
+}
+
+/// @nodoc
+class __$$RoomMemberModelImplCopyWithImpl<$Res>
+    extends _$RoomMemberModelCopyWithImpl<$Res, _$RoomMemberModelImpl>
+    implements _$$RoomMemberModelImplCopyWith<$Res> {
+  __$$RoomMemberModelImplCopyWithImpl(
+      _$RoomMemberModelImpl _value, $Res Function(_$RoomMemberModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+    Object? title = null,
+  }) {
+    return _then(_$RoomMemberModelImpl(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RoomMemberModelImpl implements _RoomMemberModel {
+  const _$RoomMemberModelImpl({required this.userId, required this.title});
+
+  factory _$RoomMemberModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RoomMemberModelImplFromJson(json);
+
+  @override
+  final String userId;
+  @override
+  final String title;
+
+  @override
+  String toString() {
+    return 'RoomMemberModel(userId: $userId, title: $title)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RoomMemberModelImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.title, title) || other.title == title));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, userId, title);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RoomMemberModelImplCopyWith<_$RoomMemberModelImpl> get copyWith =>
+      __$$RoomMemberModelImplCopyWithImpl<_$RoomMemberModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RoomMemberModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RoomMemberModel implements RoomMemberModel {
+  const factory _RoomMemberModel(
+      {required final String userId,
+      required final String title}) = _$RoomMemberModelImpl;
+
+  factory _RoomMemberModel.fromJson(Map<String, dynamic> json) =
+      _$RoomMemberModelImpl.fromJson;
+
+  @override
+  String get userId;
+  @override
+  String get title;
+  @override
+  @JsonKey(ignore: true)
+  _$$RoomMemberModelImplCopyWith<_$RoomMemberModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

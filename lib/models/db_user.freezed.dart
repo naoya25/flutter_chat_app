@@ -20,9 +20,9 @@ DBUser _$DBUserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DBUser {
-  String? get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $DBUserCopyWith<$Res> {
   factory $DBUserCopyWith(DBUser value, $Res Function(DBUser) then) =
       _$DBUserCopyWithImpl<$Res, DBUser>;
   @useResult
-  $Res call({String? id, String? name, String? email});
+  $Res call({String id, String name, String email});
 }
 
 /// @nodoc
@@ -50,23 +50,23 @@ class _$DBUserCopyWithImpl<$Res, $Val extends DBUser>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? email = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? email = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
+              as String,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
+              as String,
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -78,7 +78,7 @@ abstract class _$$DBUserImplCopyWith<$Res> implements $DBUserCopyWith<$Res> {
       __$$DBUserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String? name, String? email});
+  $Res call({String id, String name, String email});
 }
 
 /// @nodoc
@@ -92,23 +92,23 @@ class __$$DBUserImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? email = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? email = null,
   }) {
     return _then(_$DBUserImpl(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
+              as String,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
+              as String,
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -123,11 +123,11 @@ class _$DBUserImpl implements _DBUser {
       _$$DBUserImplFromJson(json);
 
   @override
-  final String? id;
+  final String id;
   @override
-  final String? name;
+  final String name;
   @override
-  final String? email;
+  final String email;
 
   @override
   String toString() {
@@ -164,18 +164,18 @@ class _$DBUserImpl implements _DBUser {
 
 abstract class _DBUser implements DBUser {
   const factory _DBUser(
-      {required final String? id,
-      required final String? name,
-      required final String? email}) = _$DBUserImpl;
+      {required final String id,
+      required final String name,
+      required final String email}) = _$DBUserImpl;
 
   factory _DBUser.fromJson(Map<String, dynamic> json) = _$DBUserImpl.fromJson;
 
   @override
-  String? get id;
+  String get id;
   @override
-  String? get name;
+  String get name;
   @override
-  String? get email;
+  String get email;
   @override
   @JsonKey(ignore: true)
   _$$DBUserImplCopyWith<_$DBUserImpl> get copyWith =>
